@@ -26,7 +26,10 @@ dbConnection();
 app.use('/api/usuarios', require('./routes/usuarios'));
 /* para el login */
 app.use('/api/login', require('./routes/auth'));
-
+/* para pacientes */
+app.use('/api/pacientes', require('./routes/pacientes'));
+/* para historiaA */
+app.use('/api/historiaA', require('./routes/historiaA'));
 
 
 /* ------------------------------- */
