@@ -22,9 +22,10 @@ app.use(cors());
 dbConnection();
 
 /* rutas */
-
+/* get, post usuario */
 app.use('/api/usuarios', require('./routes/usuarios'));
-
+/* para el login */
+app.use('/api/login', require('./routes/auth'));
 
 
 
