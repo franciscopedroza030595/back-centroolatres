@@ -23,6 +23,8 @@ dbConnection();
 
 /* rutas */
 
+app.use('/api/usuarios', require('./routes/usuarios'));
+
 
 
 

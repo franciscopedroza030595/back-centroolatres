@@ -73,7 +73,7 @@ const crearUsuario = async(req, res = response) => {
 
 const getUsuarios = async(req, res) => {
 
-    const usuarios = await Usuario.find({}, 'nombre email role ');
+    const usuarios = await Usuario.find({}, 'nombre apellido email role ');
 
     res.json({
         ok: true,
