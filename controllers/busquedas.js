@@ -68,8 +68,10 @@ const getDocumentosColeccion = async(req, res = response) => {
 
 
             break;
+
+            /* para buscar usando el id, para esto podemos obtenerlo mostrando en lista y seleccionando la pareja */
         case 'pareja':
-            data = await Concurso.findById(busqueda);
+            data = await Pareja.findById(busqueda);
 
             break;
 

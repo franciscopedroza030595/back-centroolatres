@@ -26,6 +26,9 @@ const UsuarioSchema = Schema({
         required: true,
         default: "USER_ROLE"
 
+    },
+    firma: {
+        type: String
     }
 });
 

@@ -7,7 +7,7 @@ const HistoriaA = require('../models/historiaA');
 const getHistoriaA = async(req, res = response) => {
 
     // en post verifico que del usuario(medico) que se tiene el id me trae el nombre y apellido, igual del paciente traer todos los datos
-    const historiaA = await HistoriaA.find().populate('usuario', 'nombre apellido').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
+    const historiaA = await HistoriaA.find().populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
 
     res.json({
         ok: true,
@@ -29,7 +29,7 @@ const crearhistoriaA = async(req, res = response) => {
 
         /* voy a verificar  si ya tiene historiaA */
 
-        /* const [existeEnHistoria] = await Promise.all([HistoriaA.findOne({ paciente: paciente, usuario: uid })]); */
+
         const existeEnHistoria = await HistoriaA.findOne({ paciente: paciente });
 
 
@@ -78,6 +78,8 @@ const crearhistoriaA = async(req, res = response) => {
 
 
 const borrarHistoriaA = (req, res = response) => {
+
+    /* borrar */
 
     res.json({
         ok: true,

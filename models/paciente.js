@@ -16,6 +16,10 @@ const PacienteSchema = Schema({
         type: Date,
         required: true
     },
+    edad: {
+        type: Number,
+        required: true
+    },
     ocupacion: {
         type: String,
         required: true,
@@ -51,6 +55,10 @@ const PacienteSchema = Schema({
         type: String,
         required: true,
 
+    },
+
+    firma: {
+        type: String
     }
 
 });
