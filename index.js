@@ -28,8 +28,17 @@ app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/login', require('./routes/auth'));
 /* para pacientes */
 app.use('/api/pacientes', require('./routes/pacientes'));
+/* para parejas */
+app.use('/api/parejas', require('./routes/parejas'));
 /* para historiaA */
 app.use('/api/historiaA', require('./routes/historiaA'));
+/* para terapiaP */
+app.use('/api/terapiaP', require('./routes/terapiaP'));
+
+
+
+/* ruta para busqueda */
+app.use('/api/todo', require('./routes/busquedas'));
 
 
 /* ------------------------------- */

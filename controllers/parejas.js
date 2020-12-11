@@ -4,7 +4,7 @@ const { response } = require('express');
 
 
 /* modelo para crear ususarios */
-const Paciente = require('../models/paciente');
+const Pareja = require('../models/pareja');
 /* genero el JWT */
 const { generarJWT } = require('../helpers/jwt');
 
@@ -13,7 +13,7 @@ const { generarJWT } = require('../helpers/jwt');
 
 /* ------------------------------------------------------------------ */
 
-const crearPaciente = async(req, res = response) => {
+const crearPareja = async(req, res = response) => {
 
     /* debo leer el body */
 
@@ -26,31 +26,31 @@ const crearPaciente = async(req, res = response) => {
     /* voy a verificar  si existe el paciente por cedula*/
     try {
 
-        const existeCedula = await Paciente.findOne({ cedula });
+        const existeCedula = await Pareja.findOne({ cedula });
 
         if (existeCedula) {
             return res.status(400).json({
                 ok: false,
-                msg: 'El paciente de la pareja ya esta registrado'
+                msg: 'La pareja ya esta registrada'
             });
         }
 
         /* creo instancia del objeto Usuario */
-        const paciente = new Paciente(req.body);
+        const pareja = new Pareja(req.body);
 
 
 
 
         /* para grabar en la base de datos  */
-        await paciente.save(); // esto es una promesa entonces debe esperar
+        await pareja.save(); // esto es una promesa entonces debe esperar
 
         // generar un TOKEN - JWT
-        const token = await generarJWT(paciente.id);
+        const token = await generarJWT(pareja.id);
 
 
         res.json({
             ok: true,
-            paciente,
+            pareja,
             token
         });
 
@@ -67,13 +67,13 @@ const crearPaciente = async(req, res = response) => {
 
 /* ------------------------- --------------------------- ----- */
 
-const getPacientes = async(req, res) => {
+const getParejas = async(req, res) => {
 
-    const pacientes = await Paciente.find({}, 'nombreyapellido cedula ');
+    const parejas = await Pareja.find({}, 'nombreyapellido cedula nombreyapellido2 cedula2 ');
 
     res.json({
         ok: true,
-        pacientes,
+        parejas,
         uid: req.uid // se configurio en el middleware validar jws y se llama en la ruta primero probar con postman 
     });
 }
@@ -81,6 +81,6 @@ const getPacientes = async(req, res) => {
 
 module.exports = {
 
-    crearPaciente,
-    getPacientes
+    crearPareja,
+    getParejas
 }

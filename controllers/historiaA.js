@@ -30,7 +30,7 @@ const crearhistoriaA = async(req, res = response) => {
         /* voy a verificar  si ya tiene historiaA */
 
         /* const [existeEnHistoria] = await Promise.all([HistoriaA.findOne({ paciente: paciente, usuario: uid })]); */
-        const existeEnHistoria = await HistoriaA.findOne({ paciente: paciente, usuario: uid });
+        const existeEnHistoria = await HistoriaA.findOne({ paciente: paciente });
 
 
         if (existeEnHistoria) {
