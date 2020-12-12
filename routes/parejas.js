@@ -46,7 +46,7 @@ router.post('/', [
 
 ], crearPareja);
 
-/* obtener pacientes, no voy a validar jwt peude que este get no sea necesario debido a que necesito traer de a uno  */
+/* obtener parejas, no voy a validar jwt peude que este get no sea necesario debido a que necesito traer de a uno  */
 router.get('/', getParejas);
 
 

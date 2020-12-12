@@ -25,11 +25,11 @@ const getTodo = async(req, res = response) => {
 
     /* para hacer busquedas individuales (filtros) */
 
-    /*  creo un promise all para que el proceso sea as rapido y no tener los 3 await */
+    /*  creo un promise all para que el proceso sea mas rapido y no tener los 3 await */
     const [usuarios, pacientes, parejas] = await Promise.all([
         Usuario.find({ nombre: regex }),
-        Paciente.find({ nombre: regex }),
-        Pareja.find({ nombre: regex })
+        Paciente.find({ cedula: regex }),
+        Pareja.find({ cedula: regex })
     ]);
 
 
@@ -59,12 +59,13 @@ const getDocumentosColeccion = async(req, res = response) => {
 
     switch (tabla) {
         case 'historiaA':
-            data = await HistoriaA.find({ nombre: regex }).populate('usuario', 'nombre').populate('paciente', 'nombreyapellido cedula');
+
+            data = await HistoriaA.findOne({ paciente: busqueda }).populate('usuario', 'nombre email').populate('paciente', 'nombreyapellido cedula');
 
             break;
 
         case 'parejas':
-            data = await Pareja.find({ nombre: regex });
+            data = await Pareja.find({ cedula: regex });
 
 
             break;
@@ -72,6 +73,20 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* para buscar usando el id, para esto podemos obtenerlo mostrando en lista y seleccionando la pareja */
         case 'pareja':
             data = await Pareja.findById(busqueda);
+
+            break;
+
+
+            /* para buscar pacientes por cedula */
+        case 'pacientes':
+            data = await Paciente.find({ cedula: regex });
+
+
+            break;
+
+            /* para buscar usando el id, para esto podemos obtenerlo mostrando en lista*/
+        case 'pacienteid':
+            data = await Paciente.findById(busqueda);
 
             break;
 

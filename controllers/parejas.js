@@ -18,6 +18,7 @@ const crearPareja = async(req, res = response) => {
     /* debo leer el body */
 
     const { cedula } = req.body;
+    const { cedula2 } = req.body;
 
 
 
@@ -27,8 +28,9 @@ const crearPareja = async(req, res = response) => {
     try {
 
         const existeCedula = await Pareja.findOne({ cedula });
+        const existeCedula2 = await Pareja.findOne({ cedula2 });
 
-        if (existeCedula) {
+        if (existeCedula && existeCedula2) {
             return res.status(400).json({
                 ok: false,
                 msg: 'La pareja ya esta registrada'
