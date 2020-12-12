@@ -10,6 +10,8 @@ const Pareja = require('../models/pareja');
 
 const HistoriaA = require('../models/historiaA');
 
+const TerapiaP = require('../models/terapiaP');
+
 /* -------------------------------------------------------------- */
 
 /* PREGUNTAR QUE TAN NECESARIO ES UNA BUSQUEDA O SI SOLO POR COLECCION PARA BUSCAR CONCURSOS Y GRUPOS POR CONCURSO */
@@ -25,7 +27,7 @@ const getTodo = async(req, res = response) => {
 
     /* para hacer busquedas individuales (filtros) */
 
-    /*  creo un promise all para que el proceso sea mas rapido y no tener los 3 await */
+    /*  creo un promise all para que el proceso sea mas rapido y no tener los 3 await ESTO ES PARA BUSQUEDA TOTAL INCLUIR LO NECESARIO*/
     const [usuarios, pacientes, parejas] = await Promise.all([
         Usuario.find({ nombre: regex }),
         Paciente.find({ cedula: regex }),
@@ -58,12 +60,20 @@ const getDocumentosColeccion = async(req, res = response) => {
     let data = [];
 
     switch (tabla) {
+
+        /* busco la historia de un paciente enviando el id del mismo  */
         case 'historiaA':
 
             data = await HistoriaA.findOne({ paciente: busqueda }).populate('usuario', 'nombre email').populate('paciente', 'nombreyapellido cedula');
 
             break;
+            /* busco la terapia de una pareja enviando el id del mismo  */
+        case 'terapiaP':
 
+            data = await TerapiaP.findOne({ pareja: busqueda }).populate('usuario', 'nombre email').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
+
+            break;
+            /* para buscar por cedula una pareja  */
         case 'parejas':
             data = await Pareja.find({ cedula: regex });
 
@@ -89,7 +99,7 @@ const getDocumentosColeccion = async(req, res = response) => {
             data = await Paciente.findById(busqueda);
 
             break;
-
+            /* par buscar usuarios , revisar que tan necesario es */
         case 'usuarios':
             data = await Usuario.find({ nombre: regex });
 

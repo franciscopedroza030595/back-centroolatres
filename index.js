@@ -40,6 +40,9 @@ app.use('/api/terapiaP', require('./routes/terapiaP'));
 /* ruta para busqueda */
 app.use('/api/todo', require('./routes/busquedas'));
 
+/* ruta para uploads (subida de imagenes)*/
+app.use('/api/upload', require('./routes/uploads'));
+
 
 /* ------------------------------- */
 app.listen(process.env.PORT, () => {

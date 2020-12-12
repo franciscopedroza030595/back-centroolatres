@@ -100,6 +100,10 @@ const ParejaSchema = Schema({
         type: String,
         required: true,
 
+    },
+    firmas: {
+        type: Array
+
     }
 
 
