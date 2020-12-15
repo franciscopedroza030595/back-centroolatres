@@ -17,8 +17,8 @@ const PacienteSchema = Schema({
         required: true
     },
     edad: {
-        type: Number,
-        required: true
+        type: Number
+
     },
     ocupacion: {
         type: String,
