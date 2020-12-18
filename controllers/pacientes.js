@@ -35,6 +35,7 @@ const crearPaciente = async(req, res = response) => {
             });
         }
 
+
         /* creo instancia del objeto Usuario */
         const paciente = new Paciente(req.body);
 

@@ -104,6 +104,10 @@ const ParejaSchema = Schema({
     firmas: {
         type: Array
 
+    },
+    fotos: {
+        type: Array
+
     }
 
 

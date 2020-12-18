@@ -87,9 +87,15 @@ const getDocumentosColeccion = async(req, res = response) => {
             break;
 
 
-            /* para buscar pacientes por cedula */
+            /* para buscar pacientes por cedula en todos los paciente*/
         case 'pacientes':
             data = await Paciente.find({ cedula: regex });
+
+
+            break;
+            /* para bucar un solo paciente por cedula */
+        case 'paciente':
+            data = await Paciente.findOne({ cedula: busqueda });
 
 
             break;

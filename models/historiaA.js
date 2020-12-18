@@ -53,6 +53,9 @@ const HistoriaASchema = Schema({
     },
     observaciones: {
         type: String
+    },
+    fecha: {
+        type: Date
     }
 
 

@@ -59,6 +59,9 @@ const PacienteSchema = Schema({
 
     firma: {
         type: String
+    },
+    foto: {
+        type: String
     }
 
 });
