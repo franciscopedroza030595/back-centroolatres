@@ -31,7 +31,7 @@ const crearPaciente = async(req, res = response) => {
         if (existeCedula) {
             return res.status(400).json({
                 ok: false,
-                msg: 'El paciente de la pareja ya esta registrado'
+                msg: 'El paciente  ya esta registrado'
             });
         }
 

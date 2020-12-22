@@ -52,6 +52,9 @@ const ParejaSchema = Schema({
         required: true,
 
     },
+    edad: {
+        type: Number
+    },
     nombreyapellido2: {
         type: String,
         required: true
@@ -100,6 +103,9 @@ const ParejaSchema = Schema({
         type: String,
         required: true,
 
+    },
+    edad2: {
+        type: Number
     },
     firmas: {
         type: Array

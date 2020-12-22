@@ -50,6 +50,9 @@ const TerapiaPSchema = Schema({
     },
     observaciones: {
         type: String
+    },
+    fecha: {
+        type: Date
     }
 
 

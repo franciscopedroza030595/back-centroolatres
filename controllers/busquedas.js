@@ -73,15 +73,20 @@ const getDocumentosColeccion = async(req, res = response) => {
             data = await TerapiaP.findOne({ pareja: busqueda }).populate('usuario', 'nombre email').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
 
             break;
-            /* para buscar por cedula una pareja  */
+            /* para buscar por cedula de una pareja en todas las parejas  */
         case 'parejas':
             data = await Pareja.find({ cedula: regex });
 
 
             break;
 
-            /* para buscar usando el id, para esto podemos obtenerlo mostrando en lista y seleccionando la pareja */
         case 'pareja':
+            data = await Pareja.findOne({ cedula: busqueda });
+
+
+            break;
+            /* para buscar usando el id, para esto podemos obtenerlo mostrando en lista y seleccionando la pareja */
+        case 'parejaid':
             data = await Pareja.findById(busqueda);
 
             break;
