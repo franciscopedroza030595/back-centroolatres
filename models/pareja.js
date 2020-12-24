@@ -107,15 +107,21 @@ const ParejaSchema = Schema({
     edad2: {
         type: Number
     },
-    firmas: {
-        type: Array
+    firma: {
+        type: String
 
     },
-    fotos: {
-        type: Array
+    foto: {
+        type: String
 
+    },
+    firma2: {
+        type: String
+
+    },
+    foto2: {
+        type: String
     }
-
 
 });
 
