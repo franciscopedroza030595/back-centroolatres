@@ -12,6 +12,8 @@ const HistoriaA = require('../models/historiaA');
 
 const TerapiaP = require('../models/terapiaP');
 
+const Seguimiento = require('../models/seguimiento');
+
 /* -------------------------------------------------------------- */
 
 /* PREGUNTAR QUE TAN NECESARIO ES UNA BUSQUEDA O SI SOLO POR COLECCION PARA BUSCAR CONCURSOS Y GRUPOS POR CONCURSO */
@@ -64,13 +66,20 @@ const getDocumentosColeccion = async(req, res = response) => {
         /* busco la historia de un paciente enviando el id del mismo  */
         case 'historiaA':
 
-            data = await HistoriaA.findOne({ paciente: busqueda }).populate('usuario', 'nombre email').populate('paciente', 'nombreyapellido cedula');
+            data = await HistoriaA.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
 
             break;
             /* busco la terapia de una pareja enviando el id del mismo  */
         case 'terapiaP':
 
-            data = await TerapiaP.findOne({ pareja: busqueda }).populate('usuario', 'nombre email').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
+            data = await TerapiaP.findOne({ pareja: busqueda }).populate('usuario', 'nombre apellido email').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
+
+            break;
+
+            /* busco los seguimientos de un paciente enviando el id del mismo  */
+        case 'seguimiento':
+
+            data = await Seguimiento.find({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
 
             break;
             /* para buscar por cedula de una pareja en todas las parejas  */
@@ -121,6 +130,7 @@ const getDocumentosColeccion = async(req, res = response) => {
 
 
             break;
+
 
         default:
             return res.status(400).json({

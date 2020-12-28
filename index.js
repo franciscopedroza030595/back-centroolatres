@@ -34,6 +34,8 @@ app.use('/api/parejas', require('./routes/parejas'));
 app.use('/api/historiaA', require('./routes/historiaA'));
 /* para terapiaP */
 app.use('/api/terapiaP', require('./routes/terapiaP'));
+/* para seguimiento */
+app.use('/api/seguimiento', require('./routes/seguimientos'));
 
 
 
