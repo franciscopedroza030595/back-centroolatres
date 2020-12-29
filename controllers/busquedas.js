@@ -79,7 +79,7 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco los seguimientos de un paciente enviando el id del mismo  */
         case 'seguimiento':
 
-            data = await Seguimiento.find({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
+            data = await Seguimiento.find({ paciente: busqueda }).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula');
 
             break;
             /* para buscar por cedula de una pareja en todas las parejas  */
