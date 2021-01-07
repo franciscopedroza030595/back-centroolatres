@@ -9,7 +9,7 @@ const PacienteSchema = Schema({
     },
     lugarnacimiento: {
         type: String,
-        required: true,
+
 
     },
     fechanacimiento: {
@@ -22,19 +22,19 @@ const PacienteSchema = Schema({
     },
     ocupacion: {
         type: String,
-        required: true,
+
 
     },
 
     direccion: {
         type: String,
-        required: true,
+
 
 
     },
     telefono: {
         type: String,
-        required: true
+
     },
     cedula: {
         type: String,
@@ -43,17 +43,17 @@ const PacienteSchema = Schema({
     },
     escolaridad: {
         type: String,
-        required: true,
+
 
     },
     estrato: {
         type: String,
-        required: true,
+
 
     },
     eps: {
         type: String,
-        required: true,
+
 
     },
 

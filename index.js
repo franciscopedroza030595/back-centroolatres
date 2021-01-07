@@ -1,5 +1,7 @@
 const express = require('express'); // importo express
 
+const bodyParser = require('body-parser'); // importo para bodyparser
+
 /* variables de entorno .env */
 require('dotenv').config();
 
@@ -13,7 +15,10 @@ const { dbConnection } = require('./database/config');
 const app = express();
 
 /* middleware para configurar lectura y parseo del body */
-app.use(express.json());
+/* app.use(express.json()); */
+
+/* para poder leer base64 fotos y firma */
+app.use(bodyParser.json({ limit: "50mb" }));
 
 /* configurar cors */
 app.use(cors());

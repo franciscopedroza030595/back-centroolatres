@@ -86,9 +86,11 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco los seguimientos por id de seguimieto */
         case 'seguimientoid':
 
-            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula');
+            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula edad foto firma');
 
             break;
+
+
             /* para buscar por cedula de una pareja en todas las parejas  */
         case 'parejas':
             data = await Pareja.find({ cedula: regex });
