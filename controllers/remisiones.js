@@ -1,26 +1,24 @@
 const { response } = require('express');
 
 /* importo modelo */
-const Seguimiento = require('../models/seguimiento');
+const Remision = require('../models/remision');
 
 
-const getSeguimiento = async(req, res = response) => {
+const getRemision = async(req, res = response) => {
 
     // en post verifico que del usuario(medico) que se tiene el id me trae el nombre y apellido, igual del paciente traer todos los datos
-    const seguimiento = await Seguimiento.find().populate('usuario', 'nombre apellido ').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
+    const remision = await Remision.find().populate('usuario', 'nombre apellido ').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
 
     res.json({
         ok: true,
-        Seguimiento: seguimiento
+        remision: remision
     });
 }
 
-const crearSeguimiento = async(req, res = response) => {
+const crearRemision = async(req, res = response) => {
 
 
     const { paciente } = req.body;
-
-
 
     const uid = req.uid;
 
@@ -28,13 +26,7 @@ const crearSeguimiento = async(req, res = response) => {
     try {
 
 
-
-        /* voy a verificar  si ya tiene historiaA */
-
-
-        const sesiones = await Seguimiento.countDocuments({ paciente: paciente });
-
-
+        const remisiones = await Remision.countDocuments({ paciente: paciente });
 
 
         /*  if (existeEnHistoria) {
@@ -47,20 +39,20 @@ const crearSeguimiento = async(req, res = response) => {
 
 
 
-        const seguimiento = new Seguimiento({
+        const remision = new Remision({
 
-            sesiones: sesiones + 1, //sumo uno ya que es una nueva sesion
+            remisiones: remisiones + 1, //sumo uno ya que es una nueva remision
             usuario: uid,
             ...req.body
         });
 
 
         /* --------------------------------- */
-        const seguimientoDB = await seguimiento.save();
+        const remisionDB = await remision.save();
 
         res.json({
             ok: true,
-            seguimiento: seguimientoDB
+            remision: remisionDB
         });
 
         /*   } */
@@ -76,13 +68,13 @@ const crearSeguimiento = async(req, res = response) => {
 
     res.json({
         ok: true,
-        msg: 'creado el seguimiento'
+        msg: 'creada la remision'
     });
 }
 
 
 /* esto no esta implementado */
-const borrarSeguimiento = (req, res = response) => {
+const borrarRemision = (req, res = response) => {
 
     /* borrar */
 
@@ -92,7 +84,7 @@ const borrarSeguimiento = (req, res = response) => {
     });
 }
 
-const actualizarSeguimiento = async(req, res = response) => {
+const actualizarRemision = async(req, res = response) => {
 
     /* obtengo id */
     const uid = req.params.id;
@@ -100,9 +92,9 @@ const actualizarSeguimiento = async(req, res = response) => {
 
     try {
 
-        const seguimientoDB = await Seguimiento.findById(uid);
+        const remisionDB = await Remision.findById(uid);
         /* si  no existe */
-        if (!seguimientoDB) {
+        if (!remisionDB) {
             return res.status(404).json({
                 ok: false,
                 msg: 'No existe '
@@ -115,11 +107,11 @@ const actualizarSeguimiento = async(req, res = response) => {
         const {...campos } = req.body;
 
 
-        const seguimientoActualizado = await Seguimiento.findByIdAndUpdate(uid, campos, { new: true });
+        const remisionActualizado = await Remision.findByIdAndUpdate(uid, campos, { new: true });
 
         res.json({
             ok: true,
-            seguimiento: seguimientoActualizado
+            remision: remisionActualizado
         });
 
     } catch (error) {
@@ -134,8 +126,8 @@ const actualizarSeguimiento = async(req, res = response) => {
 
 
 module.exports = {
-    getSeguimiento,
-    crearSeguimiento,
-    borrarSeguimiento,
-    actualizarSeguimiento
+    getRemision,
+    crearRemision,
+    borrarRemision,
+    actualizarRemision
 }

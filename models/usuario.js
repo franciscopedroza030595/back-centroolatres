@@ -29,6 +29,14 @@ const UsuarioSchema = Schema({
     },
     firma: {
         type: String
+    },
+    tarjetaP: {
+        type: String
+
+    },
+    registroM: {
+        type: String
+
     }
 });
 

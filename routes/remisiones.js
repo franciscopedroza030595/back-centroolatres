@@ -1,5 +1,5 @@
 /* 
-    ruta:'/api/seguimiento'
+    ruta:'/api/remision'
 */
 
 const { Router } = require('express');
@@ -10,12 +10,12 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
 
-const { crearSeguimiento, getSeguimiento, borrarSeguimiento, actualizarSeguimiento } = require('../controllers/seguimientos');
+const { crearRemision, getRemision, borrarRemision, actualizarRemision } = require('../controllers/remisiones');
 
 const router = Router();
 
 /* middleware validarJWT */
-router.get('/', getSeguimiento);
+router.get('/', getRemision);
 
 /* voy a enviar un middleware en este caso validators previo al crear  */
 router.post('/', [
@@ -25,15 +25,15 @@ router.post('/', [
 
 
     ],
-    crearSeguimiento);
+    crearRemision);
 
 
 
 /* ruta para hacer el delete */
-router.delete('/:id', borrarSeguimiento);
+router.delete('/:id', borrarRemision);
 
 // si no viene el token no puedo actualizar, para que los medicos hagan ediciones
-router.put('/:id', validarJWT, actualizarSeguimiento);
+router.put('/:id', validarJWT, actualizarRemision);
 
 
 

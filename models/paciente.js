@@ -62,6 +62,12 @@ const PacienteSchema = Schema({
     },
     foto: {
         type: String
+    },
+    nombreacudiente: {
+        type: String
+    },
+    parentesco: {
+        type: String
     }
 
 });

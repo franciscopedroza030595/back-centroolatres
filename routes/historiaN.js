@@ -1,5 +1,5 @@
 /* 
-    ruta:'/api/seguimiento'
+    ruta:'/api/historiaN'
 */
 
 const { Router } = require('express');
@@ -10,30 +10,32 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
 
-const { crearSeguimiento, getSeguimiento, borrarSeguimiento, actualizarSeguimiento } = require('../controllers/seguimientos');
+const { crearHistoriaN, getHistoriaN, borrarHistoriaN, actualizarHistoriaN } = require('../controllers/historiaN');
 
 const router = Router();
 
 /* middleware validarJWT */
-router.get('/', getSeguimiento);
+router.get('/', getHistoriaN);
 
 /* voy a enviar un middleware en este caso validators previo al crear  */
 router.post('/', [
 
         validarJWT,
 
+        check('paciente', 'El paciente id debe ser valido').isMongoId(),
 
+        validarCampos
 
     ],
-    crearSeguimiento);
+    crearHistoriaN);
 
 
 
 /* ruta para hacer el delete */
-router.delete('/:id', borrarSeguimiento);
+router.delete('/:id', borrarHistoriaN);
 
 // si no viene el token no puedo actualizar, para que los medicos hagan ediciones
-router.put('/:id', validarJWT, actualizarSeguimiento);
+router.put('/:id', validarJWT, actualizarHistoriaN);
 
 
 

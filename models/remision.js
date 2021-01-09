@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 
-const SeguimientoSchema = Schema({
+const RemisionSchema = Schema({
 
     paciente: {
 
@@ -33,15 +33,15 @@ const SeguimientoSchema = Schema({
         required: true
     },
 
-    situaciones: {
+    evaluacion: {
         type: String
     },
 
-    progreso: {
+    motivo: {
         type: String
 
     },
-    acuerdos: {
+    impresion: {
         type: String
     },
 
@@ -53,7 +53,7 @@ const SeguimientoSchema = Schema({
     fecha: {
         type: Date
     },
-    sesiones: {
+    remisiones: {
         type: Number
     },
 
@@ -61,7 +61,7 @@ const SeguimientoSchema = Schema({
 });
 
 /* para cambiar e _id de mongo por uid ; comprobar con postman REAL  */
-SeguimientoSchema.method('toJSON', function() {
+RemisionSchema.method('toJSON', function() {
     const { __v, _id, ...object } = this.toObject();
 
     object.uid = _id;
@@ -70,4 +70,4 @@ SeguimientoSchema.method('toJSON', function() {
 })
 
 /* exporto el modelo para poder crear un usuario */
-module.exports = model('Seguimiento', SeguimientoSchema);
+module.exports = model('remision', RemisionSchema);

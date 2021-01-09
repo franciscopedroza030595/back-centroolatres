@@ -10,9 +10,13 @@ const Pareja = require('../models/pareja');
 
 const HistoriaA = require('../models/historiaA');
 
+const HistoriaN = require('../models/historiaN');
+
 const TerapiaP = require('../models/terapiaP');
 
 const Seguimiento = require('../models/seguimiento');
+
+const Remision = require('../models/remision');
 
 /* -------------------------------------------------------------- */
 
@@ -69,6 +73,13 @@ const getDocumentosColeccion = async(req, res = response) => {
             data = await HistoriaA.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
 
             break;
+
+            /* busco la historia de un paciente enviando el id del mismo  */
+        case 'historiaN':
+
+            data = await HistoriaN.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
+
+            break;
             /* busco la terapia de una pareja enviando el id del mismo  */
         case 'terapiaP':
 
@@ -87,6 +98,20 @@ const getDocumentosColeccion = async(req, res = response) => {
         case 'seguimientoid':
 
             data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula edad foto firma');
+
+            break;
+
+            /* busco las remisiones de un paciente enviando el id del mismo  */
+        case 'remision':
+
+            data = await Remision.find({ paciente: busqueda }).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula');
+
+            break;
+
+            /* busco  remisiones por id de remision */
+        case 'remisionoid':
+
+            data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula edad foto firma');
 
             break;
 

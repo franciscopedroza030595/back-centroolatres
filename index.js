@@ -37,17 +37,26 @@ app.use('/api/pacientes', require('./routes/pacientes'));
 app.use('/api/parejas', require('./routes/parejas'));
 /* para historiaA */
 app.use('/api/historiaA', require('./routes/historiaA'));
+/* para historiaN */
+app.use('/api/historiaN', require('./routes/historiaN'));
 /* para terapiaP */
 app.use('/api/terapiaP', require('./routes/terapiaP'));
 /* para seguimiento */
 app.use('/api/seguimiento', require('./routes/seguimientos'));
+/* para remision */
+app.use('/api/remision', require('./routes/remisiones'));
+/* para grupos */
+app.use('/api/grupo', require('./routes/grupos'));
+/* para solicitudes de hc */
+/* app.use('/api/solicitudhc', require('./routes/solicitudhc')); */
+
 
 
 
 /* ruta para busqueda */
 app.use('/api/todo', require('./routes/busquedas'));
 
-/* ruta para uploads (subida de imagenes)*/
+/* ruta para uploads (subida de imagenes)  ESTO YA NO ES NECESARO, IMAGENES EN BASE 64*/
 app.use('/api/upload', require('./routes/uploads'));
 
 
