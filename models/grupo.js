@@ -30,6 +30,7 @@ const GrupoSchema = Schema({
     asistentes: {
         type: Array,
         ref: 'Paciente'
+
     },
 
     tema: {

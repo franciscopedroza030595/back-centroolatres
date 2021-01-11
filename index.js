@@ -23,6 +23,8 @@ app.use(bodyParser.json({ limit: "50mb" }));
 /* configurar cors */
 app.use(cors());
 
+/* prueba */
+console.log(Date());
 /* base de datos */
 dbConnection();
 
