@@ -37,11 +37,17 @@ const RemisionSchema = Schema({
         type: String
     },
 
-    motivo: {
+    diagnostica: {
         type: String
 
     },
-    impresion: {
+    cod: {
+        type: String
+    },
+    seguimiento: {
+        type: String
+    },
+    medicoentidad: {
         type: String
     },
 

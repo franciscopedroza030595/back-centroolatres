@@ -109,9 +109,9 @@ const getDocumentosColeccion = async(req, res = response) => {
             break;
 
             /* busco  remisiones por id de remision */
-        case 'remisionoid':
+        case 'remisionid':
 
-            data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula edad foto firma');
+            data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma');
 
             break;
 
