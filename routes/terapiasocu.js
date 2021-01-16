@@ -1,5 +1,5 @@
 /* 
-    ruta:'/api/solicitudhc'
+    ruta:'/api/terapiaocu'
 */
 
 const { Router } = require('express');
@@ -10,31 +10,32 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
 
-const { getSolicitudhc, crearSolicitudhc } = require('../controllers/solicitudhc');
+const { getTerapias, crearTerapia, actualizarTerapia } = require('../controllers/terapiasocu');
 
 const router = Router();
 
 /* middleware validarJWT */
-router.get('/', getSolicitudhc);
+router.get('/', getTerapias);
 
 /* voy a enviar un middleware en este caso validators previo al crear  */
 router.post('/', [
 
         validarJWT,
+
         check('paciente', 'El paciente id debe ser valido').isMongoId(),
 
         validarCampos
 
     ],
-    crearSolicitudhc);
+    crearTerapia);
 
 
 
 
-/* router.delete('/:id', borrarSocilitud);
+/* router.delete('/:id', ); */
 
 // si no viene el token no puedo actualizar
-router.put('/:id', validarJWT, actualizarSocilitud); */
+router.put('/:id', validarJWT, actualizarTerapia);
 
 
 

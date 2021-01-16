@@ -42,7 +42,7 @@ const SolicitudHSchema = Schema({
         type: Date
     },
 
-    firmau: {
+    firmaS: {
         type: String
     },
 

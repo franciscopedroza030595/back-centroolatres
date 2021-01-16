@@ -4,7 +4,7 @@ const { response } = require('express');
 const SolicitudHc = require('../models/solicitudhc');
 
 
-const getSolicitud = async(req, res = response) => {
+const getSolicitudhc = async(req, res = response) => {
 
     // en post verifico que del usuario(medico) que se tiene el id me trae el nombre y apellido, igual del paciente traer todos los datos
     const solicitudhc = await SolicitudHc.find().populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
@@ -15,7 +15,7 @@ const getSolicitud = async(req, res = response) => {
     });
 }
 
-const crearSolicitud = async(req, res = response) => {
+const crearSolicitudhc = async(req, res = response) => {
 
 
     /* const { paciente } = req.body; */
@@ -60,26 +60,26 @@ const crearSolicitud = async(req, res = response) => {
 
 
 
-const borrarSolicitud = (req, res = response) => {
+/* const borrarSolicitud = (req, res = response) => {
 
-    /* borrar */
+    --codigo para borrar de moongoze
 
     res.json({
         ok: true,
         msg: 'historia borrada'
     });
-}
+} */
 
-const actualizarSolicitud = async(req, res = response) => {
+/* const actualizarSolicitud = async(req, res = response) => {
 
-    /* obtengo id */
+    
     const uid = req.params.id;
 
 
     try {
 
         const solicitudDB = await SolicitudHc.findById(uid);
-        /* si  no existe */
+    
         if (!solicitudDB) {
             return res.status(404).json({
                 ok: false,
@@ -88,8 +88,7 @@ const actualizarSolicitud = async(req, res = response) => {
         }
 
 
-        /* si el concurso existe */
-        /* creo los cambios a actualizar */
+     
         const {...campos } = req.body;
 
 
@@ -107,14 +106,14 @@ const actualizarSolicitud = async(req, res = response) => {
             msg: 'Error inesperado'
         });
     }
-}
+} */
 
 
 
 module.exports = {
-    getSolicitud,
-    crearSolicitud,
-    borrarSolicitud,
-    actualizarSolicitud
+    getSolicitudhc,
+    crearSolicitudhc,
+
+
 
 }

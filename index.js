@@ -47,10 +47,14 @@ app.use('/api/terapiaP', require('./routes/terapiaP'));
 app.use('/api/seguimiento', require('./routes/seguimientos'));
 /* para remision */
 app.use('/api/remision', require('./routes/remisiones'));
+/* para psiquiatricas */
+app.use('/api/psiquiatrica', require('./routes/psiquiatricas'));
+/* para terapia ocupacional */
+app.use('/api/terapiaocu', require('./routes/terapiasocu'));
 /* para grupos */
 app.use('/api/grupo', require('./routes/grupos'));
 /* para solicitudes de hc */
-/* app.use('/api/solicitudhc', require('./routes/solicitudhc')); */
+app.use('/api/solicitudhc', require('./routes/solicitudhc'));
 
 
 
