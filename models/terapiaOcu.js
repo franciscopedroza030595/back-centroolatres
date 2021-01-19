@@ -21,11 +21,8 @@ const TerapiaOcuSchema = Schema({
         required: true
 
     },
-    procedimiento: {
-        type: String,
 
-    },
-    diagnostico: {
+    diagnosticoP: {
         type: String
     },
 

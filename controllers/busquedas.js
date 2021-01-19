@@ -12,11 +12,15 @@ const HistoriaA = require('../models/historiaA');
 
 const HistoriaN = require('../models/historiaN');
 
+const Psiquiatrica = require('../models/psiquiatrica');
+
 const TerapiaP = require('../models/terapiaP');
 
 const Seguimiento = require('../models/seguimiento');
 
 const Remision = require('../models/remision');
+
+const TerapiaO = require('../models/terapiaOcu');
 
 /* -------------------------------------------------------------- */
 
@@ -78,6 +82,18 @@ const getDocumentosColeccion = async(req, res = response) => {
         case 'historiaN':
 
             data = await HistoriaN.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
+
+            break;
+            /* busco la historia de un paciente enviando el id del mismo  */
+        case 'psiquiatrica':
+
+            data = await Psiquiatrica.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
+
+            break;
+            /* busco la terapiaO de un paciente enviando el id del mismo  */
+        case 'terapiaO':
+
+            data = await TerapiaO.findOne({ paciente: busqueda }).populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido cedula');
 
             break;
             /* busco la terapia de una pareja enviando el id del mismo  */

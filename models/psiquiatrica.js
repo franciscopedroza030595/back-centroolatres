@@ -23,7 +23,7 @@ const PsiquiatricaSchema = Schema({
     },
     padecimiento: {
         type: String,
-        required: true
+
     },
     heredofamiliares: {
         type: String
@@ -44,10 +44,7 @@ const PsiquiatricaSchema = Schema({
     criptorquidia: {
         type: String
     },
-    objetivos: {
-        type: String
 
-    },
     polucionesNoctu: {
         type: String
     },
@@ -118,6 +115,9 @@ const PsiquiatricaSchema = Schema({
         type: String
     },
     frecuenciaC: {
+        type: String
+    },
+    temperatura: {
         type: String
     },
     peso: {
