@@ -106,14 +106,14 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco los seguimientos de un paciente enviando el id del mismo  */
         case 'seguimiento':
 
-            data = await Seguimiento.find({ paciente: busqueda }).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula');
-
+            data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
+            /* ({ $or: [{ paciente: busqueda }, { pareja:busqueda }] })   */
             break;
 
             /* busco los seguimientos por id de seguimieto */
         case 'seguimientoid':
 
-            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma');
+            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
 
             break;
 
@@ -127,7 +127,7 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco  remisiones por id de remision */
         case 'remisionid':
 
-            data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma');
+            data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
 
             break;
 
