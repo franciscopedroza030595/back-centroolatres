@@ -21,11 +21,13 @@ const UsuarioSchema = Schema({
         type: String,
         required: true
     },
-    role: {
+    /*  role: {
+         type: String,
+         required: true
+     }, */
+    profesion: {
         type: String,
-        required: true,
-        default: "Psicologo"
-
+        required: true
     },
     firma: {
         type: String
@@ -37,6 +39,17 @@ const UsuarioSchema = Schema({
     registroM: {
         type: String
 
+    }
+});
+
+
+UsuarioSchema.plugin(require('mongoose-role'), {
+    roles: ['Director', 'Psicologo', 'Auxiliar', 'Psiquiatra', ],
+    accessLevels: {
+        Director: ['Director', 'Psicologo', 'auxiliar', 'Psiquiatra'],
+        auxiliar: ['auxiliar'],
+        Psicologo: ['Psicologo'],
+        Psiquiatra: ['Psiquiatra']
     }
 });
 

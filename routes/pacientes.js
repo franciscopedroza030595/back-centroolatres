@@ -7,6 +7,8 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 /* importo el uso de JWT */
 const { validarJWT } = require('../middlewares/validar-jwt');
+/* importo access-level */
+const { hasAccess } = require('../middlewares/access-level');
 
 const { crearPaciente, getPacientes } = require('../controllers/pacientes');
 
@@ -17,6 +19,7 @@ const router = Router();
 /* crear paciente */
 router.post('/', [
 
+    /* hasAccess('Auxiliar'), */
     validarJWT,
 
     check('nombreyapellido', ' nombre y apellido es obligatorio').not().isEmpty(),

@@ -17,17 +17,20 @@ const PacienteSchema = Schema({
         required: true
     },
     edad: {
-        type: Number
+        type: Number,
+        required: true,
 
     },
     ocupacion: {
         type: String,
+        required: true,
 
 
     },
 
     direccion: {
         type: String,
+        required: true,
 
 
 
@@ -44,24 +47,24 @@ const PacienteSchema = Schema({
     escolaridad: {
         type: String,
 
-
     },
     estrato: {
         type: String,
 
-
     },
     eps: {
         type: String,
-
+        required: true,
 
     },
 
     firma: {
-        type: String
+        type: String,
+        required: true,
     },
     foto: {
-        type: String
+        type: String,
+        required: true,
     },
     nombreacudiente: {
         type: String

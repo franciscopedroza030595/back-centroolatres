@@ -9,7 +9,7 @@ const RemisionSchema = Schema({
         ref: 'Paciente',
 
     },
-    /* revisar lo de seguimiento de parejas */
+    /* revisar lo de  de parejas */
     pareja: {
 
         type: Schema.Types.ObjectId, // esto indica a moogoze que el seguimiento puede ser de una pareja

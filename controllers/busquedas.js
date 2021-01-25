@@ -110,7 +110,7 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* ({ $or: [{ paciente: busqueda }, { pareja:busqueda }] })   */
             break;
 
-            /* busco los seguimientos por id de seguimieto */
+            /* busco en los seguimientos por el id del seguimieto */
         case 'seguimientoid':
 
             data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');

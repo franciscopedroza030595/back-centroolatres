@@ -105,22 +105,27 @@ const ParejaSchema = Schema({
 
     },
     edad2: {
-        type: Number
+        type: Number,
+        required: true
     },
     firma: {
-        type: String
+        type: String,
+        required: true
 
     },
     foto: {
-        type: String
+        type: String,
+        required: true
 
     },
     firma2: {
-        type: String
+        type: String,
+        required: true
 
     },
     foto2: {
-        type: String
+        type: String,
+        required: true
     }
 
 });
