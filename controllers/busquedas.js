@@ -66,6 +66,10 @@ const getDocumentosColeccion = async(req, res = response) => {
     const busqueda = req.params.busqueda;
     const regex = new RegExp(busqueda, 'i');
 
+    /* obtengo id */
+    const uid = req.uid;
+
+
 
     let data = [];
 
@@ -106,14 +110,17 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco los seguimientos de un paciente enviando el id del mismo  */
         case 'seguimiento':
 
-            data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role').populate('paciente', 'nombreyapellido cedula').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2');
-            /* ({ $or: [{ paciente: busqueda }, { pareja:busqueda }] })   */
+            data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }], $and: [{ usuario: { _id: uid } }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
+
             break;
+            // funciona sin filtrar el usuario que hizo el seguimiento para ver todo usarlo con el director
+            /* data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja'); */
+            /* ({ $or: [{ paciente: busqueda }, { pareja:busqueda }] })   */
 
             /* busco en los seguimientos por el id del seguimieto */
         case 'seguimientoid':
 
-            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
+            data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role profesion firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
 
             break;
 
