@@ -1,3 +1,7 @@
+// DB_C=mongodb://127.0.0.1:27017/centroolatres
+// DB_C=mongodb://backendServer:franciscoAbcOlatres2021-2@31.220.56.189:27017/centroolatres
+
+
 const express = require('express'); // importo express
 
 const bodyParser = require('body-parser'); // importo para bodyparser
