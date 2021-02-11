@@ -110,9 +110,16 @@ const getDocumentosColeccion = async(req, res = response) => {
             /* busco los seguimientos de un paciente enviando el id del mismo  */
         case 'seguimiento':
 
-            data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }], $and: [{ usuario: { _id: uid } }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
+            if (uid !== '600b38c866e9305b44c29809') {
+
+                data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }], $and: [{ usuario: { _id: uid } }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
+            } else {
+                data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
+            }
 
             break;
+
+
         case 'seguimientoDirec':
             data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
 
