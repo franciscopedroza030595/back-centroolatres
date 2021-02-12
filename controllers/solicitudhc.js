@@ -7,7 +7,7 @@ const SolicitudHc = require('../models/solicitudhc');
 const getSolicitudhc = async(req, res = response) => {
 
     // en post verifico que del usuario(medico) que se tiene el id me trae el nombre y apellido, igual del paciente traer todos los datos
-    const solicitudhc = await SolicitudHc.find().populate('usuario', 'nombre apellido email').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
+    const solicitudhc = await SolicitudHc.find().populate('usuario', 'nombre apellido profesion').populate('paciente', 'nombreyapellido lugarnacimiento fechanacimiento ocupacion direccion telefono cedula estrato eps escolaridad');
 
     res.json({
         ok: true,

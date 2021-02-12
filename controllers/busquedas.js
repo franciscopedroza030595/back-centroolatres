@@ -22,6 +22,8 @@ const Remision = require('../models/remision');
 
 const TerapiaO = require('../models/terapiaOcu');
 
+/* const Solicitudhc = require('../models/solicitudhc'); */
+
 /* -------------------------------------------------------------- */
 
 /* PREGUNTAR QUE TAN NECESARIO ES UNA BUSQUEDA O SI SOLO POR COLECCION PARA BUSCAR CONCURSOS Y GRUPOS POR CONCURSO */
@@ -120,15 +122,6 @@ const getDocumentosColeccion = async(req, res = response) => {
             break;
 
 
-        case 'seguimientoDirec':
-            data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja');
-
-            break;
-            // funciona sin filtrar el usuario que hizo el seguimiento para ver todo usarlo con el director debo crear nuevo servicio o investigar como poner un if
-            /* data = await Seguimiento.find({ $or: [{ paciente: busqueda }, { pareja: busqueda }] }).populate('usuario', 'nombre apellido role profesion').populate('paciente').populate('pareja'); */
-            /* ({ $or: [{ paciente: busqueda }, { pareja:busqueda }] })   */
-
-            /* busco en los seguimientos por el id del seguimieto */
         case 'seguimientoid':
 
             data = await Seguimiento.findById(busqueda).populate('usuario', 'nombre apellido role profesion firma').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
@@ -148,6 +141,12 @@ const getDocumentosColeccion = async(req, res = response) => {
             data = await Remision.findById(busqueda).populate('usuario', 'nombre apellido role firma profesion').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
 
             break;
+
+            /*   case 'solicitudhc':
+
+                  data = await Solicitudhc.findById(busqueda).populate('usuario', 'nombre apellido role  profesion').populate('paciente', 'nombreyapellido cedula edad foto firma').populate('pareja', 'nombreyapellido cedula nombreyapellido2 cedula2 edad edad2 foto foto2');
+
+                  break; */
 
 
             /* para buscar por cedulas de una pareja en todas las parejas  */

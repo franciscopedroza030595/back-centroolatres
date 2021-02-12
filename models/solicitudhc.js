@@ -26,7 +26,7 @@ const SolicitudHSchema = Schema({
         required: true
     },
 
-    parestesco: {
+    parentesco: {
         type: String
     },
 
@@ -34,17 +34,15 @@ const SolicitudHSchema = Schema({
         type: String
 
     },
-    entrega: {
+    /* entrega: {
         type: String
-    },
+    }, */
 
     fecha: {
         type: Date
-    },
+    }
 
-    firmaS: {
-        type: String
-    },
+
 
 
 });

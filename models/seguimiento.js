@@ -53,6 +53,10 @@ const SeguimientoSchema = Schema({
     fecha: {
         type: Date
     },
+
+    fechaS: {
+        type: Date
+    },
     sesiones: {
         type: Number
     },

@@ -44,12 +44,13 @@ const UsuarioSchema = Schema({
 
 
 UsuarioSchema.plugin(require('mongoose-role'), {
-    roles: ['Director', 'Psicologo', 'Auxiliar', 'Psiquiatra', ],
+    roles: ['Director', 'Psicologo', 'Auxiliar', 'Psiquiatra', 'Terapeuta'],
     accessLevels: {
-        Director: ['Director', 'Psicologo', 'auxiliar', 'Psiquiatra'],
-        auxiliar: ['auxiliar'],
+        Director: ['Director', 'Psicologo', 'Auxiliar', 'Psiquiatra', 'Terapeuta'],
+        Auxiliar: ['Auxiliar'],
         Psicologo: ['Psicologo'],
-        Psiquiatra: ['Psiquiatra']
+        Psiquiatra: ['Psiquiatra'],
+        Terapeuta: ['Terapeuta']
     }
 });
 
