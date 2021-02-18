@@ -90,15 +90,15 @@ app.use('/api/upload', require('./routes/uploads'));
 
 
 /* const httpServer = http.createServer(app); */
-const httpsServer = https.createServer(credentials, app);
+/* const httpsServer = https.createServer(credentials, app);
 
 
 
 
 httpsServer.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto' + process.env.PORT);
-});
-/* -----------------PARA LOCAL-------------- */
-/* app.listen(process.env.PORT, () => {
-    console.log('Servidor corriendo en puerto' + process.env.PORT);
 }); */
+/* -----------------PARA LOCAL-------------- */
+app.listen(process.env.PORT, () => {
+    console.log('Servidor corriendo en puerto' + process.env.PORT);
+});
