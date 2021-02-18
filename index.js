@@ -7,8 +7,11 @@ const fs = require('fs');
 /* const http = require('http'); */
 const https = require('https');
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/privkey.pem');
+/* const privateKey = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/privkey.pem');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/fullchain.pem');
+ */
+const privateKey = fs.readFileSync('./ssl/privkey.pem');
+const certificate = fs.readFileSync('./ssl/fullchain.pem');
 
 const credentials = { key: privateKey, cert: certificate };
 
