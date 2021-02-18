@@ -1,6 +1,18 @@
 // DB_C=mongodb://127.0.0.1:27017/centroolatres
 // DB_C=mongodb://backendServer:franciscoAbcOlatres2021-2@31.220.56.189:27017/centroolatres
 
+/* for HTTPS */
+
+const fs = require('fs');
+/* const http = require('http'); */
+const https = require('https');
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/privkey.pem');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/fullchain.pem');
+
+const credentials = { key: privateKey, cert: certificate };
+
+/* ------------ */
 
 const express = require('express'); // importo express
 
@@ -70,7 +82,20 @@ app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/upload', require('./routes/uploads'));
 
 
-/* ------------------------------- */
-app.listen(process.env.PORT, () => {
+/* FOR HTTPS */
+
+
+
+/* const httpServer = http.createServer(app); */
+const httpsServer = https.createServer(credentials, app);
+
+
+
+
+httpsServer.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto' + process.env.PORT);
 });
+/* -----------------PARA LOCAL-------------- */
+/* app.listen(process.env.PORT, () => {
+    console.log('Servidor corriendo en puerto' + process.env.PORT);
+}); */
