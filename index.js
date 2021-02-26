@@ -2,16 +2,15 @@
 // DB_C=mongodb://backendServer:franciscoAbcOlatres2021-2@31.220.56.189:27017/centroolatres
 
 /* for HTTPS */
-
 const fs = require('fs');
-/* const http = require('http'); */
+
+const http = require('http');
 const https = require('https');
 
-/* const privateKey = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/privkey.pem');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/privkey.pem');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/centroolatres.com/fullchain.pem');
- */
-const privateKey = fs.readFileSync('./ssl/privkey.pem');
-const certificate = fs.readFileSync('./ssl/fullchain.pem');
+
+
 
 const credentials = { key: privateKey, cert: certificate };
 
@@ -42,8 +41,9 @@ app.use(bodyParser.json({ limit: "50mb" }));
 /* configurar cors */
 app.use(cors());
 
-/* prueba */
+
 console.log(Date());
+
 /* base de datos */
 dbConnection();
 
@@ -76,29 +76,28 @@ app.use('/api/grupo', require('./routes/grupos'));
 app.use('/api/solicitudhc', require('./routes/solicitudhc'));
 
 
-
-
 /* ruta para busqueda */
 app.use('/api/todo', require('./routes/busquedas'));
 
 /* ruta para uploads (subida de imagenes)  ESTO YA NO ES NECESARO, IMAGENES EN BASE 64*/
 app.use('/api/upload', require('./routes/uploads'));
 
+/* -------------------------------------------------- */
+
 
 /*-------------- FOR HTTPS --------------------*/
 
-
-
 /* const httpServer = http.createServer(app); */
-/* const httpsServer = https.createServer(credentials, app);
 
 
-
+const httpsServer = https.createServer(credentials, app);
 
 httpsServer.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto' + process.env.PORT);
-}); */
-/* -----------------PARA LOCAL-------------- */
-app.listen(process.env.PORT, () => {
-    console.log('Servidor corriendo en puerto' + process.env.PORT);
 });
+
+/* -----------------PARA LOCAL-------------- */
+
+/* app.listen(process.env.PORT, () => {
+    console.log('Servidor corriendo en puerto' + process.env.PORT);
+}); */
