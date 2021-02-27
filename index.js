@@ -40,7 +40,9 @@ const app = express();
 app.use(bodyParser.json({ limit: "50mb" }));
 
 /* configurar cors */
-app.use(cors());
+app.use(cors({
+    credentials: true,
+}));
 
 
 console.log(Date());
